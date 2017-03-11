@@ -1,0 +1,16 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px; }
+
+.SearchBar {
+  background-color: #bda5d0;
+  color: #000;
+  border: 0;
+  padding: 1rem;
+  width: 100%;
+  font-size: 16px; }
+
+::placeholder {
+  color: #000; }
+
+/*# sourceMappingURL=base.css.map */

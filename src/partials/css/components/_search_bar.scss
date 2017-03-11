@@ -1,0 +1,12 @@
+.SearchBar {
+  background-color: $light_purple;
+  color: $black;
+  border: 0;
+  padding: 1rem;
+  width: 100%;
+  font-size: $base-font-size;
+}
+
+::placeholder {
+  color: $black;
+}

@@ -1,0 +1,13 @@
+@import 'variables';
+@import 'global/global';
+
+// search view
+@import 'components/search_bar';
+@import 'components/search_results';
+@import 'components/search_results_info';
+
+// detail view
+@import 'components/detail_search_bar';
+@import 'components/detail_video';
+@import 'components/detail_content';
+
