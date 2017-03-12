@@ -1,4 +1,5 @@
 export const API_ENDPOINT = "http://c4tk.somamou.org/songs.json";
+export const API_SONG_ENDPOINT = API_ENDPOINT.slice(0, -5);
 export const QUERY_KEY = "?q=";
 export const DEBOUNCE_WAIT = 300;
 const SEARCH_RESULTS_LIST = ".SearchResults-list";
@@ -22,6 +23,18 @@ export var debounce = function (func, wait, immediate) {
   };
 };
 
+export function getParameterByName(name, url) {
+  if (!url) {
+    url = window.location.href;
+  }
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 export function fetchSongs(query, callback) {
   let endPoint = `${API_ENDPOINT}${QUERY_KEY}${query}`;
 
@@ -43,6 +56,27 @@ export function fetchSongs(query, callback) {
   }
 }
 
+export function fetchSong(id, callback) {
+  let endPoint = `${API_SONG_ENDPOINT}/${id}.json`;
+
+  if (typeof id !== "undefined") {
+    axios.get(endPoint)
+      .then(function (response) {
+        callback(response.data);
+      });
+      // .catch(function (error) {
+      //   console.log(error);
+      // })
+  }
+}
+
+export function drawSongDetail({ lyrics, video_url, title, artist }) {
+  document.querySelector(".DetailVideo").setAttribute("src", video_url);
+  document.querySelector(".DetailContent-title").innerHTML = title;
+  document.querySelector(".DetailContent-artist").innerHTML = artist;
+  document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
+}
+
 export function drawSongs(songs, query) {
   docFrag = document.createDocumentFragment();
 
@@ -60,14 +94,13 @@ export function drawSongs(songs, query) {
 export function pushToSongsList({ id, title, artist }) {
   let tempDiv = document.createElement('div');
   
-  tempDiv.innerHTML = `<li data-song-id="${id}">
-  ${title}, ${artist} </li>`;
+  tempDiv.innerHTML = `<li class="SearchResults-listItem" data-song-id="${id}"><a href="/song.html?q=${id}" class="SearchResults-listLink">${title}, ${artist}</a></li>`;
   docFrag.appendChild(tempDiv.firstChild);
 }
 
 function drawResultsInfo(query) {
   let resultsInfo = document.querySelector(`${SEARCH_RESULTS_INFO}`);
-  
+
   resultsList.innerHTML = "";
   resultsInfo.innerHTML = `\"${query}\" RESULTS`;
 }

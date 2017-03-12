@@ -37,7 +37,7 @@ gulp.task('js', () => {
 });
 
 gulp.task('html', ['css', 'js'], () => {
-  return gulp.src(['src/partials/html/views/detail.pug', 'src/partials/html/views/index.pug'])
+  return gulp.src(['src/partials/html/views/song.pug', 'src/partials/html/views/index.pug'])
     .pipe(pug())
     .pipe(gulp.dest('build'))
 });

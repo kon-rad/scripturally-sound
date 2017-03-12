@@ -1,0 +1,16 @@
+.DetailSearchBar {
+  @extend .SearchBar;
+  position: absolute;
+  z-index: 99999;
+  margin: 0;
+  border-radius: 0;
+  background: $white;
+  opacity: 0.95;
+  width: 100px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+
+  &:focus {
+    width: 100%;
+  }
+}

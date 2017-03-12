@@ -1,0 +1,22 @@
+.SearchResults {
+  &-list {
+    list-style-type: none;
+    padding: 0;
+
+    &Item {
+      padding: 1rem;
+      cursor: pointer;
+      position: relative;
+
+      &:nth-of-type(odd) {
+        background-color: $light_purple;
+      }
+    }
+
+    &Link {
+      display: block;
+      color: $black;
+      text-decoration: none;
+    }
+  }
+}
