@@ -6,7 +6,7 @@
   var $$utilities$$API_ENDPOINT = "http://c4tk.somamou.org/songs.json";
   var $$utilities$$API_SONG_ENDPOINT = $$utilities$$API_ENDPOINT.slice(0, -5);
   var $$utilities$$QUERY_KEY = "?q=";
-  var $$utilities$$DEBOUNCE_WAIT = 300;
+  var $$utilities$$DEBOUNCE_WAIT = 150;
   var $$utilities$$SEARCH_RESULTS_LIST = ".SearchResults-list";
   var $$utilities$$SEARCH_RESULTS_INFO = ".SearchResults-info";
   var $$utilities$$resultsList = document.querySelector("" + $$utilities$$SEARCH_RESULTS_LIST);
@@ -94,7 +94,7 @@
     }
 
     if (lyrics !== null) {
-      var lyrics_with_title = "<p><strong>Lyrics</strong></p>" + lyrics;
+      var lyrics_with_title = "<p class=\"u-margin-btm-5\"><strong>Lyrics</strong></p>" + lyrics;
       document.querySelector(".DetailContent-lyrics").innerHTML = lyrics_with_title;
     }
 
@@ -107,7 +107,7 @@
 
     verseArray.forEach(function (verse) {
       if (verse.verse_text.length) {
-        htmlString += "<p><strong>" + verse.verse_reference + "</strong><p>" + verse.verse_text + "</p>";
+        htmlString += "<p class=\"u-margin-btm-neg\"><strong>" + verse.verse_reference + "</strong><p>" + verse.verse_text + "</p>";
       }
     });
 
@@ -117,12 +117,12 @@
   function $$utilities$$drawSongs(songs, query) {
     $$utilities$$docFrag = document.createDocumentFragment();
 
-    $$utilities$$drawResultsInfo(query);
-
     if (songs.constructor === Array) {
       songs.forEach($$utilities$$pushToSongsList);
+      $$utilities$$drawResultsInfo(query, songs.length);
     } else {
       $$utilities$$pushToSongsList(songs);
+      $$utilities$$drawResultsInfo(query, 1);
     }
     $$utilities$$resultsList.appendChild($$utilities$$docFrag);
     $$utilities$$docFrag = null;
@@ -139,11 +139,11 @@
     $$utilities$$docFrag.appendChild(tempDiv.firstChild);
   }
 
-  function $$utilities$$drawResultsInfo(query) {
+  function $$utilities$$drawResultsInfo(query, count) {
     var resultsInfo = document.querySelector("" + $$utilities$$SEARCH_RESULTS_INFO);
 
     $$utilities$$resultsList.innerHTML = "";
-    resultsInfo.innerHTML = "search results for: \"" + query + "\"";
+    resultsInfo.innerHTML = count + " search results for: \"" + query + "\"";
   }
 
   function $$utilities$$drawNoResultsInfo(query) {
@@ -223,7 +223,7 @@
   var $$utilities$$API_ENDPOINT = "http://c4tk.somamou.org/songs.json";
   var $$utilities$$API_SONG_ENDPOINT = $$utilities$$API_ENDPOINT.slice(0, -5);
   var $$utilities$$QUERY_KEY = "?q=";
-  var $$utilities$$DEBOUNCE_WAIT = 300;
+  var $$utilities$$DEBOUNCE_WAIT = 150;
   var $$utilities$$SEARCH_RESULTS_LIST = ".SearchResults-list";
   var $$utilities$$SEARCH_RESULTS_INFO = ".SearchResults-info";
   var $$utilities$$resultsList = document.querySelector("" + $$utilities$$SEARCH_RESULTS_LIST);
@@ -311,7 +311,7 @@
     }
 
     if (lyrics !== null) {
-      var lyrics_with_title = "<p><strong>Lyrics</strong></p>" + lyrics;
+      var lyrics_with_title = "<p class=\"u-margin-btm-5\"><strong>Lyrics</strong></p>" + lyrics;
       document.querySelector(".DetailContent-lyrics").innerHTML = lyrics_with_title;
     }
 
@@ -324,7 +324,7 @@
 
     verseArray.forEach(function (verse) {
       if (verse.verse_text.length) {
-        htmlString += "<p><strong>" + verse.verse_reference + "</strong><p>" + verse.verse_text + "</p>";
+        htmlString += "<p class=\"u-margin-btm-neg\"><strong>" + verse.verse_reference + "</strong><p>" + verse.verse_text + "</p>";
       }
     });
 
@@ -334,12 +334,12 @@
   function $$utilities$$drawSongs(songs, query) {
     $$utilities$$docFrag = document.createDocumentFragment();
 
-    $$utilities$$drawResultsInfo(query);
-
     if (songs.constructor === Array) {
       songs.forEach($$utilities$$pushToSongsList);
+      $$utilities$$drawResultsInfo(query, songs.length);
     } else {
       $$utilities$$pushToSongsList(songs);
+      $$utilities$$drawResultsInfo(query, 1);
     }
     $$utilities$$resultsList.appendChild($$utilities$$docFrag);
     $$utilities$$docFrag = null;
@@ -356,11 +356,11 @@
     $$utilities$$docFrag.appendChild(tempDiv.firstChild);
   }
 
-  function $$utilities$$drawResultsInfo(query) {
+  function $$utilities$$drawResultsInfo(query, count) {
     var resultsInfo = document.querySelector("" + $$utilities$$SEARCH_RESULTS_INFO);
 
     $$utilities$$resultsList.innerHTML = "";
-    resultsInfo.innerHTML = "search results for: \"" + query + "\"";
+    resultsInfo.innerHTML = count + " search results for: \"" + query + "\"";
   }
 
   function $$utilities$$drawNoResultsInfo(query) {
@@ -395,7 +395,7 @@
   var src$partials$js$utilities$$API_ENDPOINT = "http://c4tk.somamou.org/songs.json";
   var src$partials$js$utilities$$API_SONG_ENDPOINT = src$partials$js$utilities$$API_ENDPOINT.slice(0, -5);
   var src$partials$js$utilities$$QUERY_KEY = "?q=";
-  var src$partials$js$utilities$$DEBOUNCE_WAIT = 300;
+  var src$partials$js$utilities$$DEBOUNCE_WAIT = 150;
   var src$partials$js$utilities$$SEARCH_RESULTS_LIST = ".SearchResults-list";
   var src$partials$js$utilities$$SEARCH_RESULTS_INFO = ".SearchResults-info";
   var src$partials$js$utilities$$resultsList = document.querySelector("" + src$partials$js$utilities$$SEARCH_RESULTS_LIST);
@@ -483,7 +483,7 @@
     }
 
     if (lyrics !== null) {
-      var lyrics_with_title = "<p><strong>Lyrics</strong></p>" + lyrics;
+      var lyrics_with_title = "<p class=\"u-margin-btm-5\"><strong>Lyrics</strong></p>" + lyrics;
       document.querySelector(".DetailContent-lyrics").innerHTML = lyrics_with_title;
     }
 
@@ -496,7 +496,7 @@
 
     verseArray.forEach(function (verse) {
       if (verse.verse_text.length) {
-        htmlString += "<p><strong>" + verse.verse_reference + "</strong><p>" + verse.verse_text + "</p>";
+        htmlString += "<p class=\"u-margin-btm-neg\"><strong>" + verse.verse_reference + "</strong><p>" + verse.verse_text + "</p>";
       }
     });
 
@@ -506,12 +506,12 @@
   function src$partials$js$utilities$$drawSongs(songs, query) {
     src$partials$js$utilities$$docFrag = document.createDocumentFragment();
 
-    src$partials$js$utilities$$drawResultsInfo(query);
-
     if (songs.constructor === Array) {
       songs.forEach(src$partials$js$utilities$$pushToSongsList);
+      src$partials$js$utilities$$drawResultsInfo(query, songs.length);
     } else {
       src$partials$js$utilities$$pushToSongsList(songs);
+      src$partials$js$utilities$$drawResultsInfo(query, 1);
     }
     src$partials$js$utilities$$resultsList.appendChild(src$partials$js$utilities$$docFrag);
     src$partials$js$utilities$$docFrag = null;
@@ -528,11 +528,11 @@
     src$partials$js$utilities$$docFrag.appendChild(tempDiv.firstChild);
   }
 
-  function src$partials$js$utilities$$drawResultsInfo(query) {
+  function src$partials$js$utilities$$drawResultsInfo(query, count) {
     var resultsInfo = document.querySelector("" + src$partials$js$utilities$$SEARCH_RESULTS_INFO);
 
     src$partials$js$utilities$$resultsList.innerHTML = "";
-    resultsInfo.innerHTML = "search results for: \"" + query + "\"";
+    resultsInfo.innerHTML = count + " search results for: \"" + query + "\"";
   }
 
   function src$partials$js$utilities$$drawNoResultsInfo(query) {

@@ -2330,7 +2330,7 @@
   border: 0;
   outline: 0; }
 
-.SearchResults-listItem, .SearchResults-listItem:hover {
+.SearchResults-listItem, .SearchResults-listItem:hover, .SearchResults-listItem:hover > *, .SearchResults-listLink {
   transition: all 0.25s; }
 
 body {
@@ -2363,6 +2363,10 @@ body {
   opacity: 0;
   animation: fadein 0.25s;
   animation-fill-mode: forwards; }
+.u-margin-btm-neg {
+  margin-bottom: -10px; }
+.u-margin-btm-5 {
+  margin-bottom: 5px; }
 
 .Logo {
   max-width: 400px;
@@ -2395,19 +2399,19 @@ body {
   list-style-type: none;
   padding: 0; }
   .SearchResults-listItem {
-    padding: 1rem;
     cursor: pointer;
     position: relative; }
     .SearchResults-listItem:nth-of-type(odd) {
       background-color: #bda5d0; }
     .SearchResults-listItem:hover {
-      padding: 1.5rem;
       background-color: #662d91;
       color: #fff;
       margin: 0.25rem 0; }
       .SearchResults-listItem:hover > * {
-        color: #fff; }
+        color: #fff;
+        padding: 1.75rem; }
   .SearchResults-listLink {
+    padding: 1rem;
     display: block;
     color: #000;
     text-decoration: none; }

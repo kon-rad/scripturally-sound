@@ -1,7 +1,7 @@
 export const API_ENDPOINT = "http://c4tk.somamou.org/songs.json";
 export const API_SONG_ENDPOINT = API_ENDPOINT.slice(0, -5);
 export const QUERY_KEY = "?q=";
-export const DEBOUNCE_WAIT = 300;
+export const DEBOUNCE_WAIT = 150;
 const SEARCH_RESULTS_LIST = ".SearchResults-list";
 const SEARCH_RESULTS_INFO = ".SearchResults-info";
 var resultsList = document.querySelector(`${SEARCH_RESULTS_LIST}`);
@@ -84,7 +84,7 @@ export function drawSongDetail({ lyrics, video_url, title, artist, general_refer
   }
 
   if (lyrics !== null) {
-    let lyrics_with_title = `<p><strong>Lyrics</strong></p>${lyrics}`;
+    let lyrics_with_title = `<p class="u-margin-btm-5"><strong>Lyrics</strong></p>${lyrics}`;
     document.querySelector(".DetailContent-lyrics").innerHTML = lyrics_with_title;
   }
 
@@ -97,7 +97,7 @@ function createVerseHTML(verseArray) {
 
   verseArray.forEach(function(verse) {
     if (verse.verse_text.length) {
-      htmlString += `<p><strong>${verse.verse_reference}</strong><p>${verse.verse_text}</p>`;
+      htmlString += `<p class="u-margin-btm-neg"><strong>${verse.verse_reference}</strong><p>${verse.verse_text}</p>`;
     }
   });
 
@@ -107,12 +107,12 @@ function createVerseHTML(verseArray) {
 export function drawSongs(songs, query) {
   docFrag = document.createDocumentFragment();
 
-  drawResultsInfo(query);
-
   if (songs.constructor === Array) {
     songs.forEach(pushToSongsList);
+    drawResultsInfo(query, songs.length);
   } else {
     pushToSongsList(songs);
+    drawResultsInfo(query, 1);
   }
   resultsList.appendChild(docFrag);
   docFrag = null;
@@ -125,11 +125,11 @@ export function pushToSongsList({ id, title, artist }) {
   docFrag.appendChild(tempDiv.firstChild);
 }
 
-function drawResultsInfo(query) {
+function drawResultsInfo(query, count) {
   let resultsInfo = document.querySelector(`${SEARCH_RESULTS_INFO}`);
 
   resultsList.innerHTML = "";
-  resultsInfo.innerHTML = `search results for: \"${query}\"`;
+  resultsInfo.innerHTML = `${count} search results for: \"${query}\"`;
 }
 
 function drawNoResultsInfo(query) {
