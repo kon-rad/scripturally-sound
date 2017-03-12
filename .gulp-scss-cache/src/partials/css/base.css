@@ -2454,7 +2454,8 @@ body {
   .DetailContent-title {
     font-weight: bold;
     margin-bottom: -10px; }
-  .DetailContent-lyrics {
-    line-height: 1.7; }
+  .DetailContent-lyrics, .DetailContent-verses {
+    line-height: 1.7;
+    margin-top: 2rem; }
 
 /*# sourceMappingURL=base.css.map */

@@ -70,7 +70,7 @@ export function fetchSong(id, callback) {
   }
 }
 
-export function drawSongDetail({ lyrics, video_url, title, artist }) {
+export function drawSongDetail({ lyrics, video_url, title, artist, general_references }) {
   let video = document.querySelector(".DetailVideo");
 
   if (video_url !== null) {
@@ -78,10 +78,30 @@ export function drawSongDetail({ lyrics, video_url, title, artist }) {
   } else {
     video.style.display = "none";
   }
-  
+    
+  if (general_references !== null ) {
+    document.querySelector(".DetailContent-verses").innerHTML = createVerseHTML(general_references);
+  }
+
+  if (lyrics !== null) {
+    let lyrics_with_title = `<p><strong>Lyrics</strong></p>${lyrics}`;
+    document.querySelector(".DetailContent-lyrics").innerHTML = lyrics_with_title;
+  }
+
   document.querySelector(".DetailContent-title").innerHTML = title;
   document.querySelector(".DetailContent-artist").innerHTML = artist;
-  document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
+}
+
+function createVerseHTML(verseArray) {
+  let htmlString = "";
+
+  verseArray.forEach(function(verse) {
+    if (verse.verse_text.length) {
+      htmlString += `<p><strong>${verse.verse_reference}</strong><p>${verse.verse_text}</p>`;
+    }
+  });
+
+  return htmlString;
 }
 
 export function drawSongs(songs, query) {

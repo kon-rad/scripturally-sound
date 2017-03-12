@@ -78,7 +78,8 @@
     var lyrics = _ref.lyrics,
         video_url = _ref.video_url,
         title = _ref.title,
-        artist = _ref.artist;
+        artist = _ref.artist,
+        general_references = _ref.general_references;
 
     var video = document.querySelector(".DetailVideo");
 
@@ -88,9 +89,29 @@
       video.style.display = "none";
     }
 
+    if (general_references !== null) {
+      document.querySelector(".DetailContent-verses").innerHTML = $$utilities$$createVerseHTML(general_references);
+    }
+
+    if (lyrics !== null) {
+      var lyrics_with_title = "<p><strong>Lyrics</strong></p>" + lyrics;
+      document.querySelector(".DetailContent-lyrics").innerHTML = lyrics_with_title;
+    }
+
     document.querySelector(".DetailContent-title").innerHTML = title;
     document.querySelector(".DetailContent-artist").innerHTML = artist;
-    document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
+  }
+
+  function $$utilities$$createVerseHTML(verseArray) {
+    var htmlString = "";
+
+    verseArray.forEach(function (verse) {
+      if (verse.verse_text.length) {
+        htmlString += "<p><strong>" + verse.verse_reference + "</strong><p>" + verse.verse_text + "</p>";
+      }
+    });
+
+    return htmlString;
   }
 
   function $$utilities$$drawSongs(songs, query) {
@@ -274,7 +295,8 @@
     var lyrics = _ref.lyrics,
         video_url = _ref.video_url,
         title = _ref.title,
-        artist = _ref.artist;
+        artist = _ref.artist,
+        general_references = _ref.general_references;
 
     var video = document.querySelector(".DetailVideo");
 
@@ -284,9 +306,29 @@
       video.style.display = "none";
     }
 
+    if (general_references !== null) {
+      document.querySelector(".DetailContent-verses").innerHTML = $$utilities$$createVerseHTML(general_references);
+    }
+
+    if (lyrics !== null) {
+      var lyrics_with_title = "<p><strong>Lyrics</strong></p>" + lyrics;
+      document.querySelector(".DetailContent-lyrics").innerHTML = lyrics_with_title;
+    }
+
     document.querySelector(".DetailContent-title").innerHTML = title;
     document.querySelector(".DetailContent-artist").innerHTML = artist;
-    document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
+  }
+
+  function $$utilities$$createVerseHTML(verseArray) {
+    var htmlString = "";
+
+    verseArray.forEach(function (verse) {
+      if (verse.verse_text.length) {
+        htmlString += "<p><strong>" + verse.verse_reference + "</strong><p>" + verse.verse_text + "</p>";
+      }
+    });
+
+    return htmlString;
   }
 
   function $$utilities$$drawSongs(songs, query) {
@@ -425,7 +467,8 @@
     var lyrics = _ref.lyrics,
         video_url = _ref.video_url,
         title = _ref.title,
-        artist = _ref.artist;
+        artist = _ref.artist,
+        general_references = _ref.general_references;
 
     var video = document.querySelector(".DetailVideo");
 
@@ -435,9 +478,29 @@
       video.style.display = "none";
     }
 
+    if (general_references !== null) {
+      document.querySelector(".DetailContent-verses").innerHTML = src$partials$js$utilities$$createVerseHTML(general_references);
+    }
+
+    if (lyrics !== null) {
+      var lyrics_with_title = "<p><strong>Lyrics</strong></p>" + lyrics;
+      document.querySelector(".DetailContent-lyrics").innerHTML = lyrics_with_title;
+    }
+
     document.querySelector(".DetailContent-title").innerHTML = title;
     document.querySelector(".DetailContent-artist").innerHTML = artist;
-    document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
+  }
+
+  function src$partials$js$utilities$$createVerseHTML(verseArray) {
+    var htmlString = "";
+
+    verseArray.forEach(function (verse) {
+      if (verse.verse_text.length) {
+        htmlString += "<p><strong>" + verse.verse_reference + "</strong><p>" + verse.verse_text + "</p>";
+      }
+    });
+
+    return htmlString;
   }
 
   function src$partials$js$utilities$$drawSongs(songs, query) {
