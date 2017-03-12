@@ -128,8 +128,16 @@
     $$utilities$$resultsInfo.innerHTML = "";
   }
 
+  var src$partials$js$song_detail$$detailSearchBar = document.querySelector(".DetailSearchBar");
+
   if (window.location.pathname.match("song.html$")) {
     $$utilities$$fetchSong($$utilities$$getParameterByName("q"), $$utilities$$drawSongDetail);
+  }
+
+  if (src$partials$js$song_detail$$detailSearchBar !== null) {
+    src$partials$js$song_detail$$detailSearchBar.addEventListener("keyup", $$utilities$$debounce(function (e) {
+      window.location.href = "/index.html?term=" + src$partials$js$song_detail$$detailSearchBar.value;
+    }, $$utilities$$DEBOUNCE_WAIT));
   }
 }).call(undefined);
 "use strict";
@@ -310,11 +318,16 @@
 
   var src$partials$js$song_search$$searchBar = document.querySelector(".SearchBar");
   var src$partials$js$song_search$$searchResults = document.querySelector(".SearchResults-listItem");
+  var src$partials$js$song_search$$termParam = $$utilities$$.getParameterByName("term");
 
   if (src$partials$js$song_search$$searchBar !== null) {
     src$partials$js$song_search$$searchBar.addEventListener("keyup", $$utilities$$.debounce(function (e) {
       $$utilities$$.fetchSongs(src$partials$js$song_search$$searchBar.value, $$utilities$$.drawSongs);
     }, $$utilities$$.DEBOUNCE_WAIT));
+  }
+
+  if (src$partials$js$song_search$$termParam.length) {
+    $$utilities$$.fetchSongs(src$partials$js$song_search$$termParam, $$utilities$$.drawSongs);
   }
 }).call(undefined);
 "use strict";
