@@ -11,6 +11,8 @@
   
   &:focus {
     @extend %input-focus;
+    color: $black;
+    background-color: $white;
   }
 
   &-icon {

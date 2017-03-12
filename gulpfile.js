@@ -15,6 +15,11 @@ gulp.task('delete-build', () => {
   del('build');
 });
 
+gulp.task('fonts', () => {
+  return gulp.src('src/fonts/*')
+    .pipe(gulp.dest('build/fonts'))
+});
+
 gulp.task('css', () => {
   return gulp.src('src/partials/css/base.scss')
     .pipe(scss())
@@ -47,4 +52,4 @@ gulp.task('html', ['css', 'js'], () => {
     .pipe(gulp.dest('build'))
 });
 
-gulp.task('default', [ 'css', 'js', 'html', 'images' ]);
+gulp.task('default', [ 'css', 'js', 'html', 'fonts', 'images' ]);

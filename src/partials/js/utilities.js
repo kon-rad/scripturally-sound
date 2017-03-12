@@ -71,7 +71,14 @@ export function fetchSong(id, callback) {
 }
 
 export function drawSongDetail({ lyrics, video_url, title, artist }) {
-  document.querySelector(".DetailVideo").setAttribute("src", video_url);
+  let video = document.querySelector(".DetailVideo");
+
+  if (video_url !== null) {
+    video.setAttribute("src", video_url);
+  } else {
+    video.style.display = "none";
+  }
+  
   document.querySelector(".DetailContent-title").innerHTML = title;
   document.querySelector(".DetailContent-artist").innerHTML = artist;
   document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
@@ -94,7 +101,7 @@ export function drawSongs(songs, query) {
 export function pushToSongsList({ id, title, artist }) {
   let tempDiv = document.createElement('div');
   
-  tempDiv.innerHTML = `<li class="SearchResults-listItem u-fadein" data-song-id="${id}"><a href="/song.html?q=${id}" class="SearchResults-listLink">${title}, ${artist}</a></li>`;
+  tempDiv.innerHTML = `<li class="SearchResults-listItem u-fadein" data-song-id="${id}"><a href="/song.html?q=${id}" class="SearchResults-listLink">${title} - ${artist}</a></li>`;
   docFrag.appendChild(tempDiv.firstChild);
 }
 
@@ -102,12 +109,12 @@ function drawResultsInfo(query) {
   let resultsInfo = document.querySelector(`${SEARCH_RESULTS_INFO}`);
 
   resultsList.innerHTML = "";
-  resultsInfo.innerHTML = `\"${query}\" RESULTS`;
+  resultsInfo.innerHTML = `search results for: \"${query}\"`;
 }
 
 function drawNoResultsInfo(query) {
   resultsList.innerHTML = "";
-  resultsInfo.innerHTML = `\"${query}\" 0 RESULTS`;
+  resultsInfo.innerHTML = `0 search results for: \"${query}\"`;
 }
 
 function resetResults() {

@@ -12,6 +12,16 @@
 
   &:focus {
     @extend %input-focus;
+    background-color: $purple;
+    color: $white;
+
+    ::placeholder {
+      color: $white;
+    }
+  }
+
+  & + * {
+    text-align: center;
   }
 }
 

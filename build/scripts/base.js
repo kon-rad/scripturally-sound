@@ -80,7 +80,14 @@
         title = _ref.title,
         artist = _ref.artist;
 
-    document.querySelector(".DetailVideo").setAttribute("src", video_url);
+    var video = document.querySelector(".DetailVideo");
+
+    if (video_url !== null) {
+      video.setAttribute("src", video_url);
+    } else {
+      video.style.display = "none";
+    }
+
     document.querySelector(".DetailContent-title").innerHTML = title;
     document.querySelector(".DetailContent-artist").innerHTML = artist;
     document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
@@ -107,7 +114,7 @@
 
     var tempDiv = document.createElement('div');
 
-    tempDiv.innerHTML = "<li class=\"SearchResults-listItem u-fadein\" data-song-id=\"" + id + "\"><a href=\"/song.html?q=" + id + "\" class=\"SearchResults-listLink\">" + title + ", " + artist + "</a></li>";
+    tempDiv.innerHTML = "<li class=\"SearchResults-listItem u-fadein\" data-song-id=\"" + id + "\"><a href=\"/song.html?q=" + id + "\" class=\"SearchResults-listLink\">" + title + " - " + artist + "</a></li>";
     $$utilities$$docFrag.appendChild(tempDiv.firstChild);
   }
 
@@ -115,12 +122,12 @@
     var resultsInfo = document.querySelector("" + $$utilities$$SEARCH_RESULTS_INFO);
 
     $$utilities$$resultsList.innerHTML = "";
-    resultsInfo.innerHTML = "\"" + query + "\" RESULTS";
+    resultsInfo.innerHTML = "search results for: \"" + query + "\"";
   }
 
   function $$utilities$$drawNoResultsInfo(query) {
     $$utilities$$resultsList.innerHTML = "";
-    $$utilities$$resultsInfo.innerHTML = "\"" + query + "\" 0 RESULTS";
+    $$utilities$$resultsInfo.innerHTML = "0 search results for: \"" + query + "\"";
   }
 
   function $$utilities$$resetResults() {
@@ -269,7 +276,14 @@
         title = _ref.title,
         artist = _ref.artist;
 
-    document.querySelector(".DetailVideo").setAttribute("src", video_url);
+    var video = document.querySelector(".DetailVideo");
+
+    if (video_url !== null) {
+      video.setAttribute("src", video_url);
+    } else {
+      video.style.display = "none";
+    }
+
     document.querySelector(".DetailContent-title").innerHTML = title;
     document.querySelector(".DetailContent-artist").innerHTML = artist;
     document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
@@ -296,7 +310,7 @@
 
     var tempDiv = document.createElement('div');
 
-    tempDiv.innerHTML = "<li class=\"SearchResults-listItem u-fadein\" data-song-id=\"" + id + "\"><a href=\"/song.html?q=" + id + "\" class=\"SearchResults-listLink\">" + title + ", " + artist + "</a></li>";
+    tempDiv.innerHTML = "<li class=\"SearchResults-listItem u-fadein\" data-song-id=\"" + id + "\"><a href=\"/song.html?q=" + id + "\" class=\"SearchResults-listLink\">" + title + " - " + artist + "</a></li>";
     $$utilities$$docFrag.appendChild(tempDiv.firstChild);
   }
 
@@ -304,12 +318,12 @@
     var resultsInfo = document.querySelector("" + $$utilities$$SEARCH_RESULTS_INFO);
 
     $$utilities$$resultsList.innerHTML = "";
-    resultsInfo.innerHTML = "\"" + query + "\" RESULTS";
+    resultsInfo.innerHTML = "search results for: \"" + query + "\"";
   }
 
   function $$utilities$$drawNoResultsInfo(query) {
     $$utilities$$resultsList.innerHTML = "";
-    $$utilities$$resultsInfo.innerHTML = "\"" + query + "\" 0 RESULTS";
+    $$utilities$$resultsInfo.innerHTML = "0 search results for: \"" + query + "\"";
   }
 
   function $$utilities$$resetResults() {
@@ -413,7 +427,14 @@
         title = _ref.title,
         artist = _ref.artist;
 
-    document.querySelector(".DetailVideo").setAttribute("src", video_url);
+    var video = document.querySelector(".DetailVideo");
+
+    if (video_url !== null) {
+      video.setAttribute("src", video_url);
+    } else {
+      video.style.display = "none";
+    }
+
     document.querySelector(".DetailContent-title").innerHTML = title;
     document.querySelector(".DetailContent-artist").innerHTML = artist;
     document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
@@ -440,7 +461,7 @@
 
     var tempDiv = document.createElement('div');
 
-    tempDiv.innerHTML = "<li class=\"SearchResults-listItem u-fadein\" data-song-id=\"" + id + "\"><a href=\"/song.html?q=" + id + "\" class=\"SearchResults-listLink\">" + title + ", " + artist + "</a></li>";
+    tempDiv.innerHTML = "<li class=\"SearchResults-listItem u-fadein\" data-song-id=\"" + id + "\"><a href=\"/song.html?q=" + id + "\" class=\"SearchResults-listLink\">" + title + " - " + artist + "</a></li>";
     src$partials$js$utilities$$docFrag.appendChild(tempDiv.firstChild);
   }
 
@@ -448,12 +469,12 @@
     var resultsInfo = document.querySelector("" + src$partials$js$utilities$$SEARCH_RESULTS_INFO);
 
     src$partials$js$utilities$$resultsList.innerHTML = "";
-    resultsInfo.innerHTML = "\"" + query + "\" RESULTS";
+    resultsInfo.innerHTML = "search results for: \"" + query + "\"";
   }
 
   function src$partials$js$utilities$$drawNoResultsInfo(query) {
     src$partials$js$utilities$$resultsList.innerHTML = "";
-    src$partials$js$utilities$$resultsInfo.innerHTML = "\"" + query + "\" 0 RESULTS";
+    src$partials$js$utilities$$resultsInfo.innerHTML = "0 search results for: \"" + query + "\"";
   }
 
   function src$partials$js$utilities$$resetResults() {

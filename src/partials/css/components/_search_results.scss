@@ -7,9 +7,22 @@
       padding: 1rem;
       cursor: pointer;
       position: relative;
+      @extend %transition-all;
 
       &:nth-of-type(odd) {
         background-color: $light_purple;
+      }
+
+      &:hover {
+        padding: 1.5rem;
+        @extend %transition-all;
+        background-color: $purple;
+        color: $white;
+        margin: 0.25rem 0;
+
+        & > * {
+          color: $white;
+        }
       }
     }
 

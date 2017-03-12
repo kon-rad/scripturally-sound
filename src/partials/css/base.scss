@@ -1,3 +1,7 @@
+// vendor
+@import 'font_awesome/font-awesome';
+
+// globals
 @import 'global/variables';
 @import 'global/partials';
 @import 'global/global';
@@ -6,6 +10,7 @@
 
 
 // search view
+@import 'components/logo';
 @import 'components/search_bar';
 @import 'components/search_results';
 @import 'components/search_results_info';
