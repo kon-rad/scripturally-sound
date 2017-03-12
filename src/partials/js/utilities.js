@@ -94,7 +94,7 @@ export function drawSongs(songs, query) {
 export function pushToSongsList({ id, title, artist }) {
   let tempDiv = document.createElement('div');
   
-  tempDiv.innerHTML = `<li class="SearchResults-listItem" data-song-id="${id}"><a href="/song.html?q=${id}" class="SearchResults-listLink">${title}, ${artist}</a></li>`;
+  tempDiv.innerHTML = `<li class="SearchResults-listItem u-fadein" data-song-id="${id}"><a href="/song.html?q=${id}" class="SearchResults-listLink">${title}, ${artist}</a></li>`;
   docFrag.appendChild(tempDiv.firstChild);
 }
 

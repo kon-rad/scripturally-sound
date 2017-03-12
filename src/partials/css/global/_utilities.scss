@@ -1,0 +1,7 @@
+.u {
+  &-fadein {
+    opacity: 0;
+    animation: fadein 0.25s;
+    animation-fill-mode: forwards;
+  }
+}
