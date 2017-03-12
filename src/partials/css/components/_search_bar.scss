@@ -9,6 +9,20 @@
   display: block;
   margin: 3rem auto;
   @extend %border-radius;
+
+  &:focus {
+    @extend %input-focus;
+    background-color: $purple;
+    color: $white;
+
+    ::placeholder {
+      color: $white;
+    }
+  }
+
+  & + * {
+    text-align: center;
+  }
 }
 
 ::placeholder {

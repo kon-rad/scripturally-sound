@@ -1,0 +1,15 @@
+.u {
+  &-fadein {
+    opacity: 0;
+    animation: fadein 0.25s;
+    animation-fill-mode: forwards;
+  }
+
+  &-margin-btm-neg {
+    margin-bottom: -10px
+  }
+
+  &-margin-btm-5 {
+    margin-bottom: 5px
+  }
+}

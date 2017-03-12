@@ -1,7 +1,7 @@
 export const API_ENDPOINT = "http://c4tk.somamou.org/songs.json";
 export const API_SONG_ENDPOINT = API_ENDPOINT.slice(0, -5);
 export const QUERY_KEY = "?q=";
-export const DEBOUNCE_WAIT = 300;
+export const DEBOUNCE_WAIT = 150;
 const SEARCH_RESULTS_LIST = ".SearchResults-list";
 const SEARCH_RESULTS_INFO = ".SearchResults-info";
 var resultsList = document.querySelector(`${SEARCH_RESULTS_LIST}`);
@@ -70,22 +70,49 @@ export function fetchSong(id, callback) {
   }
 }
 
-export function drawSongDetail({ lyrics, video_url, title, artist }) {
-  document.querySelector(".DetailVideo").setAttribute("src", video_url);
+export function drawSongDetail({ lyrics, video_url, title, artist, general_references }) {
+  let video = document.querySelector(".DetailVideo");
+
+  if (video_url !== null) {
+    video.setAttribute("src", video_url);
+  } else {
+    video.style.display = "none";
+  }
+    
+  if (general_references !== null ) {
+    document.querySelector(".DetailContent-verses").innerHTML = createVerseHTML(general_references);
+  }
+
+  if (lyrics !== null) {
+    let lyrics_with_title = `<p class="u-margin-btm-5"><strong>Lyrics</strong></p>${lyrics}`;
+    document.querySelector(".DetailContent-lyrics").innerHTML = lyrics_with_title;
+  }
+
   document.querySelector(".DetailContent-title").innerHTML = title;
   document.querySelector(".DetailContent-artist").innerHTML = artist;
-  document.querySelector(".DetailContent-lyrics").innerHTML = lyrics;
+}
+
+function createVerseHTML(verseArray) {
+  let htmlString = "";
+
+  verseArray.forEach(function(verse) {
+    if (verse.verse_text.length) {
+      htmlString += `<p class="u-margin-btm-neg"><strong>${verse.verse_reference}</strong><p>${verse.verse_text}</p>`;
+    }
+  });
+
+  return htmlString;
 }
 
 export function drawSongs(songs, query) {
   docFrag = document.createDocumentFragment();
 
-  drawResultsInfo(query);
-
   if (songs.constructor === Array) {
     songs.forEach(pushToSongsList);
+    drawResultsInfo(query, songs.length);
   } else {
     pushToSongsList(songs);
+    drawResultsInfo(query, 1);
   }
   resultsList.appendChild(docFrag);
   docFrag = null;
@@ -94,20 +121,20 @@ export function drawSongs(songs, query) {
 export function pushToSongsList({ id, title, artist }) {
   let tempDiv = document.createElement('div');
   
-  tempDiv.innerHTML = `<li class="SearchResults-listItem" data-song-id="${id}"><a href="/song.html?q=${id}" class="SearchResults-listLink">${title}, ${artist}</a></li>`;
+  tempDiv.innerHTML = `<li class="SearchResults-listItem u-fadein" data-song-id="${id}"><a href="/song.html?q=${id}" class="SearchResults-listLink">${title} - ${artist}</a></li>`;
   docFrag.appendChild(tempDiv.firstChild);
 }
 
-function drawResultsInfo(query) {
+function drawResultsInfo(query, count) {
   let resultsInfo = document.querySelector(`${SEARCH_RESULTS_INFO}`);
 
   resultsList.innerHTML = "";
-  resultsInfo.innerHTML = `\"${query}\" RESULTS`;
+  resultsInfo.innerHTML = `${count} search results for: \"${query}\"`;
 }
 
 function drawNoResultsInfo(query) {
   resultsList.innerHTML = "";
-  resultsInfo.innerHTML = `\"${query}\" 0 RESULTS`;
+  resultsInfo.innerHTML = `0 search results for: \"${query}\"`;
 }
 
 function resetResults() {

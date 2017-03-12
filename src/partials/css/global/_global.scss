@@ -3,4 +3,24 @@ body {
   font-size: $base_font_size;
   max-width: $single-column;
   margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+.Footer {
+  border-top: 2px solid $lightest-gray;
+  text-align: center;
+  padding: 2rem 1rem 4rem;
+
+  &-link {
+    display: inline-block;
+    padding: 1rem 0.5rem;
+    text-decoration: none;
+    color: $black;
+    font-size: $big_font_size;
+    margin: 0.5rem;
+
+    &:hover {
+      color: $purple;
+    }
+  }
 }

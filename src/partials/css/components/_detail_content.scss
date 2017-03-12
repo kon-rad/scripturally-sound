@@ -6,7 +6,9 @@
     margin-bottom: -10px;
   }
 
-  &-lyrics {
+  &-lyrics,
+  &-verses {
     line-height: 1.7;
+    margin-top: 2rem;
   }
 }
