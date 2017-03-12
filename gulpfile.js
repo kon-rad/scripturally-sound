@@ -36,10 +36,15 @@ gulp.task('js', () => {
     .pipe(gulp.dest('build/scripts'))
 });
 
+gulp.task('images', () => {
+  return gulp.src('src/images/*')
+    .pipe(gulp.dest('build/images'))
+});
+
 gulp.task('html', ['css', 'js'], () => {
   return gulp.src(['src/partials/html/views/song.pug', 'src/partials/html/views/index.pug'])
     .pipe(pug())
     .pipe(gulp.dest('build'))
 });
 
-gulp.task('default', [ 'css', 'js', 'html' ]);
+gulp.task('default', [ 'css', 'js', 'html', 'images' ]);

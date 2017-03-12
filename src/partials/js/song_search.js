@@ -11,6 +11,6 @@ if (searchBar !== null) {
   );
 }
 
-if (termParam.length) {
+if (termParam !== null && termParam.length) {
   utils.fetchSongs(termParam, utils.drawSongs);
 }

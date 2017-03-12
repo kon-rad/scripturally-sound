@@ -128,15 +128,16 @@
     $$utilities$$resultsInfo.innerHTML = "";
   }
 
-  var src$partials$js$song_detail$$detailSearchBar = document.querySelector(".DetailSearchBar");
+  var src$partials$js$song_detail$$detailSearchBarTerm = document.querySelector(".DetailSearchBar");
+  var src$partials$js$song_detail$$detailSearchBar = document.querySelector(".DetailSearchBar-icon");
 
   if (window.location.pathname.match("song.html$")) {
     $$utilities$$fetchSong($$utilities$$getParameterByName("q"), $$utilities$$drawSongDetail);
   }
 
   if (src$partials$js$song_detail$$detailSearchBar !== null) {
-    src$partials$js$song_detail$$detailSearchBar.addEventListener("keyup", $$utilities$$debounce(function (e) {
-      window.location.href = "/index.html?term=" + src$partials$js$song_detail$$detailSearchBar.value;
+    src$partials$js$song_detail$$detailSearchBar.addEventListener("click", $$utilities$$debounce(function (e) {
+      window.location.href = "/index.html?term=" + src$partials$js$song_detail$$detailSearchBarTerm.value;
     }, $$utilities$$DEBOUNCE_WAIT));
   }
 }).call(undefined);
@@ -326,7 +327,7 @@
     }, $$utilities$$.DEBOUNCE_WAIT));
   }
 
-  if (src$partials$js$song_search$$termParam.length) {
+  if (src$partials$js$song_search$$termParam !== null && src$partials$js$song_search$$termParam.length) {
     $$utilities$$.fetchSongs(src$partials$js$song_search$$termParam, $$utilities$$.drawSongs);
   }
 }).call(undefined);

@@ -1,6 +1,10 @@
 .SearchBar, .DetailSearchBar {
   border-radius: 4px; }
 
+.SearchBar:focus, .DetailSearchBar:focus {
+  border: 0;
+  outline: 0; }
+
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
@@ -36,17 +40,25 @@ body {
     text-decoration: none; }
 
 .DetailSearchBar {
-  position: absolute;
-  z-index: 99999;
   margin: 0;
+  max-width: 100%;
   border-radius: 0;
   background: #fff;
   opacity: 0.95;
-  width: 100px;
+  flex-basis: 90%;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out; }
-  .DetailSearchBar:focus {
-    width: 100%; }
+  .DetailSearchBar-icon {
+    flex-basis: 10%;
+    min-width: 25px;
+    cursor: pointer; }
+  .DetailSearchBar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 1rem; }
 
 .DetailVideo-container {
   position: relative;

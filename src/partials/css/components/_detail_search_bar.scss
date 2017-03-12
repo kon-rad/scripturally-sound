@@ -1,16 +1,30 @@
 .DetailSearchBar {
   @extend .SearchBar;
-  position: absolute;
-  z-index: 99999;
   margin: 0;
+  max-width: 100%;
   border-radius: 0;
   background: $white;
   opacity: 0.95;
-  width: 100px;
+  flex-basis: 90%;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
-
+  
   &:focus {
-    width: 100%;
+    @extend %input-focus;
+  }
+
+  &-icon {
+    flex-basis: 10%;
+    min-width: 25px;
+    cursor: pointer;
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 1rem;
   }
 }
