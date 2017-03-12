@@ -38,6 +38,8 @@
   var $$utilities$$DEBOUNCE_WAIT = 300;
   var $$utilities$$SEARCH_RESULTS_LIST = ".SearchResults-list";
   var $$utilities$$SEARCH_RESULTS_INFO = ".SearchResults-info";
+  var $$utilities$$resultsList = document.querySelector("" + $$utilities$$SEARCH_RESULTS_LIST);
+  var $$utilities$$resultsInfo = document.querySelector("" + $$utilities$$SEARCH_RESULTS_INFO);
   var $$utilities$$docFrag = null;
 
   var $$utilities$$debounce = function $$utilities$$debounce(func, wait, immediate) {
@@ -59,13 +61,21 @@
   function $$utilities$$fetchSongs(query, callback) {
     var endPoint = "" + $$utilities$$API_ENDPOINT + $$utilities$$QUERY_KEY + query;
 
-    axios.get(endPoint).then(function (response) {
-      if (response.data.length) callback(response.data, query);
-    })
-    // .catch(function (error) {
-    //   console.log(error);
-    // })
-    ;
+    if (query === "") {
+      $$utilities$$resetResults();
+    } else {
+      axios.get(endPoint).then(function (response) {
+        if (response.data.length) {
+          callback(response.data, query);
+        } else {
+          $$utilities$$drawNoResultsInfo(query);
+        }
+      })
+      // .catch(function (error) {
+      //   console.log(error);
+      // })
+      ;
+    }
   }
 
   function $$utilities$$drawSongs(songs, query) {
@@ -78,7 +88,7 @@
     } else {
       $$utilities$$pushToSongsList(songs);
     }
-    document.querySelector("" + $$utilities$$SEARCH_RESULTS_LIST).appendChild($$utilities$$docFrag);
+    $$utilities$$resultsList.appendChild($$utilities$$docFrag);
     $$utilities$$docFrag = null;
   }
 
@@ -96,7 +106,18 @@
   function $$utilities$$drawResultsInfo(query) {
     var resultsInfo = document.querySelector("" + $$utilities$$SEARCH_RESULTS_INFO);
 
+    $$utilities$$resultsList.innerHTML = "";
     resultsInfo.innerHTML = "\"" + query + "\" RESULTS";
+  }
+
+  function $$utilities$$drawNoResultsInfo(query) {
+    $$utilities$$resultsList.innerHTML = "";
+    $$utilities$$resultsInfo.innerHTML = "\"" + query + "\" 0 RESULTS";
+  }
+
+  function $$utilities$$resetResults() {
+    $$utilities$$resultsList.innerHTML = "";
+    $$utilities$$resultsInfo.innerHTML = "";
   }
 
   var src$partials$js$search_bar$$searchBar = document.querySelector(".SearchBar");
@@ -124,6 +145,8 @@
   var src$partials$js$utilities$$DEBOUNCE_WAIT = 300;
   var src$partials$js$utilities$$SEARCH_RESULTS_LIST = ".SearchResults-list";
   var src$partials$js$utilities$$SEARCH_RESULTS_INFO = ".SearchResults-info";
+  var src$partials$js$utilities$$resultsList = document.querySelector("" + src$partials$js$utilities$$SEARCH_RESULTS_LIST);
+  var src$partials$js$utilities$$resultsInfo = document.querySelector("" + src$partials$js$utilities$$SEARCH_RESULTS_INFO);
   var src$partials$js$utilities$$docFrag = null;
 
   var src$partials$js$utilities$$debounce = function src$partials$js$utilities$$debounce(func, wait, immediate) {
@@ -145,13 +168,21 @@
   function src$partials$js$utilities$$fetchSongs(query, callback) {
     var endPoint = "" + src$partials$js$utilities$$API_ENDPOINT + src$partials$js$utilities$$QUERY_KEY + query;
 
-    axios.get(endPoint).then(function (response) {
-      if (response.data.length) callback(response.data, query);
-    })
-    // .catch(function (error) {
-    //   console.log(error);
-    // })
-    ;
+    if (query === "") {
+      src$partials$js$utilities$$resetResults();
+    } else {
+      axios.get(endPoint).then(function (response) {
+        if (response.data.length) {
+          callback(response.data, query);
+        } else {
+          src$partials$js$utilities$$drawNoResultsInfo(query);
+        }
+      })
+      // .catch(function (error) {
+      //   console.log(error);
+      // })
+      ;
+    }
   }
 
   function src$partials$js$utilities$$drawSongs(songs, query) {
@@ -164,7 +195,7 @@
     } else {
       src$partials$js$utilities$$pushToSongsList(songs);
     }
-    document.querySelector("" + src$partials$js$utilities$$SEARCH_RESULTS_LIST).appendChild(src$partials$js$utilities$$docFrag);
+    src$partials$js$utilities$$resultsList.appendChild(src$partials$js$utilities$$docFrag);
     src$partials$js$utilities$$docFrag = null;
   }
 
@@ -182,6 +213,17 @@
   function src$partials$js$utilities$$drawResultsInfo(query) {
     var resultsInfo = document.querySelector("" + src$partials$js$utilities$$SEARCH_RESULTS_INFO);
 
+    src$partials$js$utilities$$resultsList.innerHTML = "";
     resultsInfo.innerHTML = "\"" + query + "\" RESULTS";
+  }
+
+  function src$partials$js$utilities$$drawNoResultsInfo(query) {
+    src$partials$js$utilities$$resultsList.innerHTML = "";
+    src$partials$js$utilities$$resultsInfo.innerHTML = "\"" + query + "\" 0 RESULTS";
+  }
+
+  function src$partials$js$utilities$$resetResults() {
+    src$partials$js$utilities$$resultsList.innerHTML = "";
+    src$partials$js$utilities$$resultsInfo.innerHTML = "";
   }
 }).call(undefined);

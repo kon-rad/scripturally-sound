@@ -1,5 +1,7 @@
-@import 'variables';
+@import 'global/variables';
+@import 'global/partials';
 @import 'global/global';
+
 
 // search view
 @import 'components/search_bar';

@@ -36,8 +36,8 @@ gulp.task('js', () => {
     .pipe(gulp.dest('build/scripts'))
 });
 
-gulp.task('html', ['css', 'js', 'delete-build'], () => {
-  return gulp.src(['src/partials/html/views/detail.pug', 'src/partials/html/views/search.pug'])
+gulp.task('html', ['css', 'js'], () => {
+  return gulp.src(['src/partials/html/views/detail.pug', 'src/partials/html/views/index.pug'])
     .pipe(pug())
     .pipe(gulp.dest('build'))
 });

@@ -3,6 +3,8 @@ export const QUERY_KEY = "?q=";
 export const DEBOUNCE_WAIT = 300;
 const SEARCH_RESULTS_LIST = ".SearchResults-list";
 const SEARCH_RESULTS_INFO = ".SearchResults-info";
+var resultsList = document.querySelector(`${SEARCH_RESULTS_LIST}`);
+var resultsInfo = document.querySelector(`${SEARCH_RESULTS_INFO}`);
 var docFrag = null;
 
 export var debounce = function (func, wait, immediate) {
@@ -23,14 +25,22 @@ export var debounce = function (func, wait, immediate) {
 export function fetchSongs(query, callback) {
   let endPoint = `${API_ENDPOINT}${QUERY_KEY}${query}`;
 
-  axios.get(endPoint)
-    .then(function (response) {
-      if(response.data.length) callback(response.data, query);
-    })
-    // .catch(function (error) {
-    //   console.log(error);
-    // })
-  ;
+  if (query === "") {
+    resetResults();
+  } else {
+    axios.get(endPoint)
+      .then(function (response) {
+        if(response.data.length) {
+          callback(response.data, query);
+        } else {
+          drawNoResultsInfo(query);
+        }
+      })
+      // .catch(function (error) {
+      //   console.log(error);
+      // })
+    ;
+  }
 }
 
 export function drawSongs(songs, query) {
@@ -43,7 +53,7 @@ export function drawSongs(songs, query) {
   } else {
     pushToSongsList(songs);
   }
-  document.querySelector(`${SEARCH_RESULTS_LIST}`).appendChild(docFrag);
+  resultsList.appendChild(docFrag);
   docFrag = null;
 }
 
@@ -57,6 +67,18 @@ export function pushToSongsList({ id, title, artist }) {
 
 function drawResultsInfo(query) {
   let resultsInfo = document.querySelector(`${SEARCH_RESULTS_INFO}`);
-
+  
+  resultsList.innerHTML = "";
   resultsInfo.innerHTML = `\"${query}\" RESULTS`;
 }
+
+function drawNoResultsInfo(query) {
+  resultsList.innerHTML = "";
+  resultsInfo.innerHTML = `\"${query}\" 0 RESULTS`;
+}
+
+function resetResults() {
+  resultsList.innerHTML = "";
+  resultsInfo.innerHTML = "";
+}
+
